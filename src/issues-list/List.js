@@ -1,7 +1,7 @@
 import React from "react";
 import ListItem from "./ListItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./List.scss";
+import "./List.css";
 
 function List(props) {
   return (
@@ -11,9 +11,7 @@ function List(props) {
           key={issue.id}
           issue={issue}
           project={props.project}
-          // organization={props.organization}
           onLabelSelected={props.onLabelSelected}
-          onAuthorSelected={props.onAuthorSelected}
         />
       ))}
       {props.loading && (

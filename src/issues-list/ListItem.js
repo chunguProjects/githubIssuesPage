@@ -5,13 +5,7 @@ import Label from "./Label";
 import UserTooltip from "./UserTooltip";
 import IssueTooltip from "./IssueTooltip";
 
-function ListItem({
-  issue,
-  project,
-  // organization,
-  onLabelSelected,
-  onAuthorSelected
-}) {
+function ListItem({issue,project,onLabelSelected,onAuthorSelected}) {
   const [showUserTooltip, setShowUserTooltip] = useState(false);
   const [showIssueTooltip, setShowIssueTooltip] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
@@ -82,7 +76,6 @@ function ListItem({
                 <IssueTooltip
                   issue={issue}
                   project={project}
-                  // organization={organization}
                 />
               )}
             </a>

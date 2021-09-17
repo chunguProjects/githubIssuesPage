@@ -3,20 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import getColorForBackground from "../helpers/ColorHelper";
 import "./IssueTooltip.scss";
 
-const months = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec"
-];
+const months = ["Jan","Feb","Mar", "Apr", "May","Jun","Jul","Aug", "Sep","Oct","Nov", "Dec"];
 
 function IssueTooltip({ issue, project, organization }) {
   const getDate = dateStr => {

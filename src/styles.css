@@ -1,18 +1,18 @@
 .App {
     font-family: sans-serif;
     text-align: center;
-  
+}  
     .options {
       display: flex;
       justify-content: center;
       align-items: center;
       margin-bottom: 15px;
-  
+    }
       span {
         margin-left: 10px;
       }
-    }
-  }
+    
+  
   
   .no-issues,
   .error {

@@ -1,6 +1,6 @@
 import React from "react";
 import getColorForBackground from "../helpers/ColorHelper";
-import "./Label.scss";
+import "./Label.css";
 
 function Label(props) {
   const onLabelSelected = label => {

@@ -1,5 +1,4 @@
 
-
 import React, { useState, useEffect, useCallback } from "react";
 import ReactDOM from "react-dom";
 import List from "./issues-list/List";
@@ -8,27 +7,12 @@ import Pagination from "./pagination/Pagination";
 import ListHeader from "./issues-header/ListHeader";
 import useDebounce from "./custom-effects/useDebounce";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import {
-  faExclamationCircle,
-  faCommentAlt,
-  faCheck,
-  faSortDown,
-  faTimesCircle,
-  faSpinner
-} from "@fortawesome/free-solid-svg-icons";
-import "./styles.scss";
-import CustomDropdown from "./custom-dropdown/CustomDropdown";
-import ClearFilters from "./clear-filters/ClearFilters";
+import {faExclamationCircle, faCommentAlt, faCheck, faSortDown, faTimesCircle,faSpinner} from "@fortawesome/free-solid-svg-icons";
+import "./styles.css";
+
  import { getMaxPageFromHeader } from "./helpers/Helpers";
 
-library.add(
-  faExclamationCircle,
-  faCommentAlt,
-  faCheck,
-  faSortDown,
-  faTimesCircle,
-  faSpinner
-);
+library.add(faExclamationCircle,faCommentAlt, faCheck, faSortDown, faTimesCircle, faSpinner);
 
 function App() {
  const [organization, setOrganization] = useState("facebook");
@@ -50,34 +34,11 @@ function App() {
 
   useEffect(() => {
     getGithubIssues();
-  }, [
-    page,
-    state,
-    author,
-    labels,
-    assignee,
-    debouncedOrganization,
-    debouncedProject,
-    sortBy,
-    sortDirection,
-    milestone
-  ]);
+  }, [ page, state, author, labels, assignee, debouncedOrganization, debouncedProject, sortBy, sortDirection, milestone ]);
 
   const getGithubIssues = useCallback(() => {
     setLoading(true);
-    getIssues(
-     organization,
-      project,
-      page,
-      7,
-      state,
-      author,
-      labels,
-      assignee,
-      sortBy,
-      sortDirection,
-      milestone
-    )
+    getIssues(organization, project, page, 6, state, author, labels, assignee, sortBy, sortDirection, milestone )
       .then(data => {
         console.log(data.data);
         setIssues(data.data);
@@ -93,18 +54,7 @@ function App() {
         setError(err);
         setLoading(false);
       });
-  }, [
-   organization,
-    project,
-    page,
-    state,
-    author,
-    labels,
-    assignee,
-    sortBy,
-    sortDirection,
-    milestone
-  ]);
+  }, [page,state, labels, assignee,sortBy,sortDirection,]);
 
   const onPrev = () => {
     if (page <= 1) {
@@ -138,10 +88,6 @@ function App() {
     setLabels([label]);
   };
 
-  const onAssigneeChange = assignee => {
-    setAssignee(assignee);
-  };
-
   const onSortingChange = event => {
     if (event.sortBy !== sortBy) {
       setSortBy(event.sortBy);
@@ -149,86 +95,19 @@ function App() {
     if (event.sortDirection !== sortDirection) {
       setSortDirection(event.sortDirection);
     }
-  };
-
-  const onMilestonesChange = event => {
-    setMilestone(event);
-  };
-
-  const onRepoChange = event => {
-    setProject(event);
-  };
-
-  // const onOrgChange = event => {
-  //   setOrganization(event);
-  // };
-
-  const onClearFilters = event => {
-    setLabels([]);
-    setSortBy("created");
-    setSortDirection("desc");
-    setMilestone(undefined);
-    setAuthor(undefined);
-    setAssignee(undefined);
-  };
+  }
 
   return (
     <div className="App">
       <h1>Github issues</h1>
-      <div className="options">
-        {/* <CustomDropdown
-         label={organization}
-          header="Select organization"
-          filterPlaceholder="Search by name"
-          type="orgs"
-         org={organization}
-          onOrgChange={onOrgChange}
-        /> */}
-        {/* <CustomDropdown */}
-          {/* // label={project}
-          // header="Select repository"
-          // filterPlaceholder="Search by name"
-          // type="repos"
-          // repo={project}
-          // organization={organization}
-          // onRepoChange={onRepoChange} */}
-        {/* /> */}
-      </div>
-
-      <ClearFilters
-        labels={labels}
-        sortBy={sortBy}
-        sortDirection={sortDirection}
-        milestone={milestone}
-        author={author}
-        assignee={assignee}
-        onClearFilters={onClearFilters}
-      />
-
-      <ListHeader
-        state={state}
-        author={author}
-        assignee={assignee}
-        labels={labels}
-  //      organization={organization}
-        project={project}
-        sortBy={sortBy}
-        sortDirection={sortDirection}
-        milestone={milestone}
-        stateChanged={stateChanged}
-        onAuthorChange={onAuthorChange}
-        onLabelsChange={onLabelsChange}
-        onAssigneeChange={onAssigneeChange}
-        onSortingChange={onSortingChange}
-        onMilestonesChange={onMilestonesChange}
-      />
+     
       {issues.length > 0 && !error && (
         <>
           <List
             issues={issues}
-            project={project}
-         //   organization={organization}
-            loading={loading}
+          
+
+             loading={loading}
             onLabelSelected={onLabelChanged}
             onAuthorSelected={onAuthorChange}
           />
